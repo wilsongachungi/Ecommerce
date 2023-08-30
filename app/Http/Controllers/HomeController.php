@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
+use App\Models\Product;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function Laravel\Prompts\search;
 
 class HomeController extends Controller
 {
@@ -20,7 +23,9 @@ class HomeController extends Controller
 
         else
         {
-            return view('user.home');
+            $data = product::paginate(3);
+
+            return view('user.home',compact('data'));
         }
     }
 
@@ -33,9 +38,24 @@ class HomeController extends Controller
         }
         else
         {
-            return view('user.home');
+            $data = product::paginate(3);
+
+            return view('user.home',compact('data'));
+        }
+    }
+
+    public function search(Request $request)
+    {
+        $search=$request->search;
+        if($search=='')
+        {
+            $data = product::paginate(3);
+
+            return view('user.home',compact('data'));
         }
 
+        $data=product::where('title', 'like', '%'.$search.'%')->get();
 
+        return view('user.home',compact('data'));
     }
 }

@@ -73,7 +73,13 @@ https://templatemo.com/tm-546-sixteen-clothing
 
                             @auth
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Cart</a>
+                              </li>
 
+                         <x-app-layout></x-app-layout>
 
                             @else
                                <li> <a class="nav-link" href="{{ route('login') }}" >Log in</a></li>
@@ -117,7 +123,7 @@ https://templatemo.com/tm-546-sixteen-clothing
     <!-- Banner Ends Here -->
 
    @include('user.product')
-   
+
     <div class="best-features">
       <div class="container">
         <div class="row">
