@@ -27,7 +27,12 @@ class HomeController extends Controller
         {
             $data = product::paginate(3);
 
-            return view('user.home',compact('data'));
+
+            $user=auth()->user();
+
+            $count=cart::where('phone',$user->phone)->count();
+
+            return view('user.home',compact('data','count'));
         }
     }
 
@@ -44,6 +49,8 @@ class HomeController extends Controller
 
             return view('user.home',compact('data'));
         }
+
+
     }
 
     public function search(Request $request)
@@ -53,11 +60,7 @@ class HomeController extends Controller
         {
             $data = product::paginate(3);
 
-            $user=auth()->user();
-
-            $count=cart::where('phone',$user->phone)->count();
-
-            return view('user.home',compact('data','count'));
+            return view('user.home',compact('data'));
         }
 
         $data=product::where('title', 'like', '%'.$search.'%')->get();
@@ -95,5 +98,10 @@ class HomeController extends Controller
         {
             return redirect('login');
         }
+    }
+
+    public function showcart()
+    {
+        return view('user.showcart');
     }
 }
