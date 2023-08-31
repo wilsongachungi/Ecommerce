@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
     <title>Sixteen Clothing HTML Template</title>
 
@@ -76,7 +77,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.html">
                                     <i class="fas fa-shopping-cart"></i>
-                                    Cart</a>
+                                    Cart[{{$count}}]</a>
                               </li>
 
                          <x-app-layout></x-app-layout>
@@ -94,6 +95,17 @@ https://templatemo.com/tm-546-sixteen-clothing
           </div>
         </div>
       </nav>
+      @if (session()->has('message'))
+
+      <div class="alert alert-success">
+
+      <button type="buttun" class="close" data-dismiss="alert">x</button>
+
+      {{session()->get('message')}}
+
+      </div>
+
+      @endif
     </header>
 
     <!-- Page Content -->
