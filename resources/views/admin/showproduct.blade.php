@@ -41,6 +41,8 @@
                         <td style="padding:20px;">Delete</td>
                     </tr>
 
+                    
+
                     @foreach($data as $product)
 
                     <tr style="background-color:black; align-items:center">

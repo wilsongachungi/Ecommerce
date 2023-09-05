@@ -102,6 +102,22 @@ class HomeController extends Controller
 
     public function showcart()
     {
-        return view('user.showcart');
+
+        $user=auth()->user();
+
+        $cart=cart::where('phone',$user->phone)->get();
+
+        $count=cart::where('phone',$user->phone)->count();
+
+        return view('user.showcart',compact('count','cart'));
+    }
+
+    public function deletecart($id)
+    {
+        $data=cart::find($id);
+
+        $data->delete();
+
+        return redirect()->back()->with('message', 'product deleted');
     }
 }
